@@ -19,7 +19,7 @@ class InvertedIndex{
         using PostingList = vector<Posting>;
 
         // build index for a document
-        void indexDocument(DocumentStore::DocId docId, string_view context);
+        void indexDocument(DocumentStore::DocId docId, string_view content);
 
         // check if a term exists in the index
         bool conatinsTerm(string_view term) const;
