@@ -6,7 +6,7 @@
 #include "../inverted_index/inverted_index.hpp"
 #include "../document/document_store.hpp"
 
-class QueryExecutor{
+class QueryExecuter{
     public:
         static std::vector<DocumentStore::DocId> execute(const ParsedQuery& query, const InvertedIndex& index){
             if(query.terms.empty()) return {};
