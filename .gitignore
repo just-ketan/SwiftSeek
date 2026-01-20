@@ -1,0 +1,94 @@
+# ================================
+# Build artifacts
+# ================================
+build/
+build-*/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# ================================
+# CMake generated files
+# ================================
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+compile_commands.json
+
+# ================================
+# Object & binary files
+# ================================
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+
+# ================================
+# Debug / profiling output
+# ================================
+*.out
+*.log
+perf.data
+perf.data.old
+vgcore.*
+callgrind.out.*
+cachegrind.out.*
+gmon.out
+
+# ================================
+# IDE / Editor files
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.tmp
+
+# ================================
+# OS generated files
+# ================================
+.DS_Store
+Thumbs.db
+
+# ================================
+# Python (scripts/)
+# ================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# ================================
+# Benchmark & report outputs
+# ================================
+benchmark_report.json
+reports/
+results/
+
+# ================================
+# Test artifacts
+# ================================
+tests/**/output/
+tests/**/tmp/
+
+# ================================
+# Coverage files
+# ================================
+*.gcda
+*.gcno
+*.gcov
+
+# ================================
+# Misc
+# ================================
+*.bak
+*.old
+*.orig
