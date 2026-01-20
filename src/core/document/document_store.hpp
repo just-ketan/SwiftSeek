@@ -8,35 +8,21 @@
 #include <string_view>
 #include<unordered_map>
 #include <stdexception>
-using namespace std;
 
 class DocumentStore{
     public:
         using DocId = uint32_t;
 
-        void addDocument(DocId docId, string content){
-            documents_[docId] = move(content); 
-        }
+        void addDocument(DocId docId, std::string content);
         
-        bool contains(DocId docId) const {
-            return documents_.find(docId) != documents.end();
-        }
+        bool contains(DocId docId) const;
 
-        string_view getDocument(DocId docId) const {
-            auto it = documents_.find(docId);
-            if(it == documets_.end()){
-                throw out_of_range("Document ID not found");
-            }
-            return it->second;
-        }
+        std::string_view getDocument(DocId docId) cons;
 
-        size_t size() const noexcept{
-            return documents_.size();
-        }
+        std::size_t size() const noexcept;
 
-        void clear(){
-            documets_.clear()
-        }
+        void clear();
+
     private:
-        unordered_map<DocId, string> documents_;
+        std::unordered_map<DocId, std::string> documents_;
 };
