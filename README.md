@@ -51,7 +51,6 @@ It is designed to showcase **data structures, algorithms, systems design, and pe
         │  Results   │
         └────────────┘
 ```
-```yaml
 
 ---
 
@@ -178,34 +177,32 @@ Measurable and explainable performance improvements
 Interview-ready, production-quality C++ code
 
 ### Explicit Non-Goals (Current Version)
-
-Distributed execution
-Persistent on-disk index
-Unicode / multilingual tokenization
+#### Distributed execution
+#### Persistent on-disk index
+#### Unicode / multilingual tokenization
 
 ### 🚧 Future Extensions
-
 Planned or natural extensions to SwiftSeek:
-🔥 BM25 ranking (drop-in replacement for TF-IDF)
-🧵 Multithreaded query execution
-💾 On-disk index persistence
-🌍 Unicode & language-aware tokenization
-📡 Distributed / sharded search
+#### 🔥 BM25 ranking (drop-in replacement for TF-IDF)
+#### 🧵 Multithreaded query execution
+#### 💾 On-disk index persistence
+#### 🌍 Unicode & language-aware tokenization
+#### 📡 Distributed / sharded search
 
 
 ## 👨‍💻 Author Notes
 
 SwiftSeek was built as a systems-level project to demonstrate:
-# Data structures (inverted index, LRU cache)
-# Algorithmic optimization
-# Clean C++ architecture
-# Real-world performance tradeoffs
+##### Data structures (inverted index, LRU cache)
+##### Algorithmic optimization
+##### Clean C++ architecture
+##### Real-world performance tradeoffs
 
 If you are reviewing this project for interviews or hiring:
 The focus is on design decisions, performance reasoning, and extensibility, not just correctness.
 
 
-# ⭐ If You Like This Project
+##### ⭐ If You Like This Project
     Star the repository ⭐
     Fork and experiment 🔧
     Use it as a foundation for your own search engine 🚀
