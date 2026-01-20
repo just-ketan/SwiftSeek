@@ -1,4 +1,4 @@
-# 🚀 SwiftSeek  
+#  SwiftSeek  
 ### A High-Performance Search Engine in Modern C++
 
 SwiftSeek is a **production-grade, single-node search engine** implemented end-to-end in **modern C++**.  
@@ -168,27 +168,6 @@ Cache hit/miss evaluation
     Modern GCC / Clang
     -O2 optimization flags
     Linux-based environments
-
-## 🎯 Design Goals
-
-Correctness first, optimization second
-Clear ownership of responsibilities per module
-Measurable and explainable performance improvements
-Interview-ready, production-quality C++ code
-
-### Explicit Non-Goals (Current Version)
-#### Distributed execution
-#### Persistent on-disk index
-#### Unicode / multilingual tokenization
-
-### 🚧 Future Extensions
-Planned or natural extensions to SwiftSeek:
-#### 🔥 BM25 ranking (drop-in replacement for TF-IDF)
-#### 🧵 Multithreaded query execution
-#### 💾 On-disk index persistence
-#### 🌍 Unicode & language-aware tokenization
-#### 📡 Distributed / sharded search
-
 
 ## 👨‍💻 Author Notes
 
