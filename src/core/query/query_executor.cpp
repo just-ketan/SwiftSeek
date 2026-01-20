@@ -28,6 +28,8 @@ std::vector<DocumentStore::DocId> QueryExecuter::execute(const ParsedQuery& quer
     }else{
         res = executeOR(query, index);
     }
+
+    
     queryCache.put(cacheKey, res);
     return res;
 }
