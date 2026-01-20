@@ -2,36 +2,37 @@
 #include <vector>
 #include <unordered_set>
 #include <algorithm>
-#include "quer_parser.hpp"
+#include "query_parser.hpp"
 #include "../inverted_index/inverted_index.hpp"
+#include "../document/document_store.hpp"
 
 class QueryExecutor{
     public:
-        static vector<DocumentStore::DocId> execute(const ParsedQuery& query, const InvertedIndex& index){
+        static std::vector<DocumentStore::DocId> execute(const ParsedQuery& query, const InvertedIndex& index){
             if(query.terms.empty()) return {};
 
             if(query.type == QueryType::AND){
                 return executeAND(query, index);
             }
 
-            return executeOR(query, OR);
+            return executeOR(query, index);
         }
 
     private:
-        static vecotr<DocumentStore::DocId> executeAND(const ParsedQuery& query, InvertedIndex index){
-            const auto* firstList = index.getPostingList(query.terms[0]);
+        static std::vector<DocumentStore::DocId> executeAND(const ParsedQuery& query, const InvertedIndex& index){
+            const auto* firstLine = index.getPostingList(query.terms[0]);
             if(!firstLine)  return {};
 
-            unordered_set<DocumentStore::DocId> result;
+            std::unordered_set<DocumentStore::DocId> result;
             for(const auto& p : *firstLine){
                 result.insert(p.docId);
             }
             // start from next index
-            for(size_t i=1; i<query.terms.size(); i++){
+            for(std::size_t i=1; i<query.terms.size(); i++){
                 const auto* plist = index.getPostingList(query.terms[i]);
                 if(!plist)  return  {};
 
-                unordered_set<DocumentStore::DocId> curr;
+                std::unordered_set<DocumentStore::DocId> curr;
                 for(const auto& p : *plist){
                     if(result.count(p.docId)){
                         curr.insert(p.docId);
@@ -39,12 +40,12 @@ class QueryExecutor{
                 }
                 result.swap(curr);
             }
-            return {result.bgein(), result.end()};
+            return {result.begin(), result.end()};
         }
 
-        static vector<DocumentStore::DocId> executeOR(const ParsedQuery& query, const InvertedIndex index){
-            unordered_set<DocumentStore::DocId> res;
-            for(const auto& terms : query.terms){
+        static std::vector<DocumentStore::DocId> executeOR(const ParsedQuery& query, const InvertedIndex& index){
+            std::unordered_set<DocumentStore::DocId> res;
+            for(const auto& term : query.terms){
                 const auto* plist = index.getPostingList(term);
                 if(!plist)  continue;
 
