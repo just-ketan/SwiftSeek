@@ -8,9 +8,9 @@
 #include "../inverted_index/inverted_index.hpp"
 #include "../document/document_store.hpp"
 
-class TFIDRanker{
+class TFIDFRanker{
     public:
         using ScoreDocument = std::pair<DocumentStore::DocId, double>;
-        static std::Vector<ScoreDocument> rank(const std::vector<std::string>& queryTerms, const InvertedIndex& index, std::size_t totalDocuments);
-        // only the definition
+        static std::vector<ScoreDocument> rank(const std::vector<std::string>& queryTerms, const InvertedIndex& index, std::size_t totalDocuments);
+        // only thedefinition
 }
