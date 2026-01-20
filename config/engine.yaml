@@ -1,0 +1,22 @@
+engine:
+  name: SwiftSeek
+  mode: single_node
+
+index:
+  tokenizer: basic
+  lowercase: true
+
+query:
+  default_operator: AND
+  cache:
+    enabled: true
+    capacity: 1024
+
+ranking:
+  algorithm: tfidf
+  tfidf:
+    use_smoothing: true
+
+benchmark:
+  warmup_runs: 100
+  measured_runs: 1000

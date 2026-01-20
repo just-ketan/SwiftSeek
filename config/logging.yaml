@@ -1,0 +1,6 @@
+logging:
+  level: INFO
+  output: stdout
+
+formats:
+  console: "[{level}] {message}"
