@@ -14,7 +14,7 @@ void BenchmarkRunner::runSearchBenchmark(const std::vector<std::string>& queries
         QueryExecutor::execute(parsed, index);
     }
     auto end = clock.now();
-    auto ms = std::chrono::duration_cast<std::chrono::millisecond>(end-start);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end-start);
 
     log(LogLevel::INFO, "Benchmark completed in " + std::to_string(ms.count()) + "ms");
 }
