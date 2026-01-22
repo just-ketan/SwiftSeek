@@ -1,45 +1,62 @@
-# SwiftSeek API
+# SwiftSeek – Benchmarks & Performance
 
-## QueryExecutor
+This document describes how SwiftSeek performance is measured
+and what the results mean.
 
-```cpp
-std::vector<DocId> execute(
-    const ParsedQuery& query,
-    const InvertedIndex& index
-);
-```
-Executes a parsed query and returns matching document IDs.
-```cpp
-std::vector<ScoreDocument> rank(
-    const std::vector<std::string>& terms,
-    const InvertedIndex& index,
-    size_t totalDocs
-);
-```
-Ranks documents by relevance.
+---
 
-```yaml
+## 🧪 Benchmark Setup
 
-## 6️⃣ `docs/BENCHMARKS.md`
+- Platform: Linux (x86_64)
+- Compiler: GCC / Clang
+- Flags: `-O2`
+- Dataset: synthetic + real-text samples
+- Query mix:
+  - term queries
+  - AND / OR queries
+  - phrase queries
 
-```md
-# Benchmark Results
+---
 
-## Test Setup
-- CPU: x86_64
-- Compiler: g++ -O2
-- Dataset: synthetic + real text
+## 📊 Key Metrics
 
-## Results
+| Metric | Description |
+|-----|-----------|
+| Query latency | Time per query |
+| Cache hit ratio | % queries served from cache |
+| Vocabulary size | Unique indexed terms |
+| Index build time | Indexing performance |
 
-| Version | Avg Query Time |
-|------|----------------|
-| Naive | 2.4 ms |
-| Cached + Optimized | 0.9 ms |
+---
 
-**Performance Improvement: ~62%**
+## ⏱️ Sample Results
 
-## Notes
-- Cache hit ratio stabilizes at ~85%
-- AND queries benefit most from caching
-```
+| Configuration | Avg Query Time |
+|--------------|----------------|
+| Naive execution | ~2.4 ms |
+| With caching | ~0.9 ms |
+
+~60% latency reduction for repeated queries.
+
+---
+
+## 🔍 Observations
+
+- Inverted index dominates performance gains
+- Phrase verification cost is negligible after candidate filtering
+- LRU cache significantly improves tail latency
+
+---
+
+## ⚠️ Notes
+
+Benchmarks are intended to compare **relative improvements**, not absolute throughput.
+Results may vary by hardware and dataset.
+
+---
+
+## ▶️ Running Benchmarks
+
+```bash
+./scripts/run_benchmarks.sh
+python scripts/generate_report.py
