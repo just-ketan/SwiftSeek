@@ -55,7 +55,7 @@ It is designed to showcase **data structures, algorithms, systems design, and pe
 ---
 
 ## 📁 Project Structure
-
+```yaml
 swiftseek/
 ├── src/
 │ ├── core/
