@@ -25,7 +25,7 @@ public:
     std::size_t size() const noexcept;
     void clear();
 };
-```
+``` 
 
 Responsibilities
     - Owns document text
