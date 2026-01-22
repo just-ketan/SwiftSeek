@@ -12,7 +12,7 @@ This document explains **why** SwiftSeek is designed the way it is.
 - Simple, cache-friendly data structure
 
 Alternatives like suffix trees were rejected due to:
-- memory overhead
+- memory overhead 
 - poor ranking support
 
 ---
