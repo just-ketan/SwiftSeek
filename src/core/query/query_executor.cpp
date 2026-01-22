@@ -3,6 +3,7 @@
 #include "../../cache/lru_cache.hpp"
 #include <string>
 #include <unordered_set>
+#include <iostream>
 
 namespace {
     constexpr std::size_t QUERY_CACHE_CAPACITY = 1024;
@@ -50,6 +51,8 @@ std::vector<DocumentStore::DocId> QueryExecutor::execute(const ParsedQuery& quer
 }
 
 std::vector<DocumentStore::DocId> QueryExecutor::executeAND(const ParsedQuery& query, const InvertedIndex& index) {
+    std::cout << "ENTER executeAND\n";
+
     if (query.terms.empty()) return {};
 
     const auto* firstList = index.getPostingList(query.terms[0]);
@@ -61,6 +64,7 @@ std::vector<DocumentStore::DocId> QueryExecutor::executeAND(const ParsedQuery& q
     }
 
     for (std::size_t i = 1; i < query.terms.size(); ++i) {
+        std::cout << "AND term: " << query.terms[i] << "\n";
         const auto* plist = index.getPostingList(query.terms[i]);
         if (!plist) return {};
 
@@ -76,6 +80,7 @@ std::vector<DocumentStore::DocId> QueryExecutor::executeAND(const ParsedQuery& q
 }
 
 std::vector<DocumentStore::DocId> QueryExecutor::executeOR(const ParsedQuery& query, const InvertedIndex& index) { 
+    std::cout << "ENTER executeOR\n";
     std::unordered_set<DocumentStore::DocId> result;
     for (const auto& term : query.terms) {
         const auto* plist = index.getPostingList(term);
