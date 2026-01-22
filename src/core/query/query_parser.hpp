@@ -17,6 +17,7 @@ enum class QueryType{
 struct ParsedQuery{
     QueryType type;
     vector<string> terms;
+    vector<string> phrases; // aho corasick
 };
 
 // Query Parser
@@ -25,6 +26,8 @@ class QueryParser{
         static ParsedQuery parse(string_view query){
             ParsedQuery result;
             result.type = QueryType::AND;   //defaulting to AND
+
+            result.phrases = extractPhrases(query);
 
             if(conatinsOR(query)){
                 result.type = QueryType::OR;
@@ -67,5 +70,25 @@ class QueryParser{
                 out.emplace_back(move(token));
                 token.clear();
             }
+        }
+
+        // aho corasic integration
+        static vector<string> extractPhrases(string_view query){
+            vector<string> phrases;
+            string curr;
+            bool inQuotes = false;
+
+            for(char c : query){
+                if(c == '"'){
+                    if(inQuotes && !curr.empty()){
+                        phrases.push_back(curr);
+                        curr.clear();
+                    }
+                    inQuotes = !inQuotes;
+                }else if(inQuotes){
+                    curr.push_back(c);
+                }
+            }
+            return phrases;
         }
 };
