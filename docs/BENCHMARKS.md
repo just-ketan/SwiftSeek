@@ -36,7 +36,7 @@ and what the results mean.
 | Naive execution | ~2.4 ms |
 | With caching | ~0.9 ms |
 
-~60% latency reduction for repeated queries.
+~60% latency reduction for repeated queries. 
 
 ---
 
