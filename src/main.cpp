@@ -13,9 +13,7 @@ int main() {
     std::cout << "       SwiftSeek Demo\n";
     std::cout << "==============================\n\n";
 
-    // --------------------------------------------------
     // 1. Create document store and inverted index
-    // --------------------------------------------------
     DocumentStore store;
     InvertedIndex index;
 
@@ -26,9 +24,7 @@ int main() {
     store.addDocument(3, "aho corasick enables fast multi pattern matching");
     store.addDocument(4, "modern search engines combine ranking and indexing");
 
-    // --------------------------------------------------
     // 2. Index all documents
-    // --------------------------------------------------
     std::cout << "[INFO] Indexing documents...\n";
 
     for (DocumentStore::DocId id = 1; id <= store.size(); ++id) {
@@ -41,9 +37,8 @@ int main() {
               << index.vocabularySize()
               << "\n\n";
 
-    // --------------------------------------------------
+
     // 3. Run example queries
-    // --------------------------------------------------
     std::vector<std::string> queries = {
         "search engine",
         "\"high performance\" search",
