@@ -18,4 +18,4 @@ class AhoCorasick{
 
         void buildTrie(const std::vector<std::string>& patterns);
         void buildFailureLinks();
-}
+};

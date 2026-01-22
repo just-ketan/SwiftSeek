@@ -7,7 +7,7 @@ class AhoMatcher{
         explicit AhoMatcher(const std::vector<std::string>& patterns) : automaton_(patterns) {}
         //check if any patterns appear in the document
         bool matches(DocumentStore::DocId docId, const DocumentStore& store) const {
-            auto test = store.getDocument(docId);
+            auto text = store.getDocument(docId);
             return !automaton_.match(std::string(text)).empty();
         }
     private:

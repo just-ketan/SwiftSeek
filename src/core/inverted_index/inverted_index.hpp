@@ -1,37 +1,26 @@
 #pragma once
-#include <cstdint>
+
 #include <string>
 #include <string_view>
 #include <unordered_map>
 #include <vector>
-using namespace std;
+
 #include "../document/document_store.hpp"
 
-// posting entry for a term, represents a document in which a term appears
-struct Posting{
+struct Posting {
     DocumentStore::DocId docId;
     uint32_t termFrequency;
 };
 
-// inverted index mapping terms to posting lists
-class InvertedIndex{
-    public:
-        using PostingList = vector<Posting>;
+class InvertedIndex {
+public:
+    using PostingList = std::vector<Posting>;
+    void indexDocument(DocumentStore::DocId docId, std::string_view content);
+    bool containsTerm(std::string_view term) const;
+    const PostingList* getPostingList(std::string_view term) const;
+    std::size_t vocabularySize() const noexcept;
+    void clear();
 
-        // build index for a document
-        void indexDocument(DocumentStore::DocId docId, string_view content);
-
-        // check if a term exists in the index
-        bool conatinsTerm(string_view term) const;
-
-        // get Posting list for a term and return pointer to the same
-        const PostingList* getPostingList(string_view term) const;
-
-        //return number of unique indexed terms
-        size_t vocabularySize() const noexcept;
-
-        void clear();
-    
-    private:
-        unordered_map<string, PostingList> index_;
+private:
+    std::unordered_map<std::string, PostingList> index_;
 };

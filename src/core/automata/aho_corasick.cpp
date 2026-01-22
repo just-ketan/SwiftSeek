@@ -3,12 +3,12 @@
 
 AhoCorasick::AhoCorasick(const std::vector<std::string>& patterns){
     trie_.push_back(Node{});    // root
-    builTrie(patterns);
+    buildTrie(patterns);
     buildFailureLinks();
 }
 
 void AhoCorasick::buildTrie(const std::vector<std::string>& patterns){
-    for(int i=0; i<patterns.size(); i++){
+    for(std::size_t i=0; i<patterns.size(); i++){
         int node = 0;
         for(char c : patterns[i]){
             if(!trie_[node].next.count(c)){
@@ -31,7 +31,7 @@ void AhoCorasick::buildFailureLinks(){
 
     while(!q.empty()){
         int v = q.front(); q.pop();
-        for(auto& [c,nxt] : trie[v].next){
+        for(auto& [c,nxt] : trie_[v].next){
             int f = trie_[v].fail;
             while(f!=-1 && !trie_[f].next.count(c)){
                 f = trie_[f].fail;

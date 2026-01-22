@@ -1,11 +1,11 @@
 #pragma once
-#include <stirng>
+#include <string>
 #include <string_view>
 #include <vector>
 #include <cctype>
 using namespace std;
 
-#include "../inverted_index/tokenizer.cpp"
+#include "../inverted_index/tokenizer.hpp"
 
 // supported query types
 enum class QueryType{
@@ -29,7 +29,7 @@ class QueryParser{
 
             result.phrases = extractPhrases(query);
 
-            if(conatinsOR(query)){
+            if(containsOR(query)){
                 result.type = QueryType::OR;
                 result.terms = splitOR(query);
             }else{

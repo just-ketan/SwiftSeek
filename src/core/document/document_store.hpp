@@ -7,20 +7,16 @@
 #include <string>
 #include <string_view>
 #include<unordered_map>
-#include <stdexception>
+#include <stdexcept>
 
 class DocumentStore{
     public:
         using DocId = uint32_t;
 
         void addDocument(DocId docId, std::string content);
-        
         bool contains(DocId docId) const;
-
-        std::string_view getDocument(DocId docId) cons;
-
+        std::string_view getDocument(DocId docId) const;
         std::size_t size() const noexcept;
-
         void clear();
 
     private:
