@@ -62,7 +62,8 @@ swiftseek/
 │ │ ├── document/ # Document storage
 │ │ ├── inverted_index/ # Index + tokenizer
 │ │ ├── query/ # Parser + executor
-│ │ └── ranking/ # TF-IDF
+│ │ ├── ranking/ # TF-IDF
+│ │ └── automata/ # Aho–Corasick
 │ ├── cache/ # LRU cache
 │ ├── benchmark/ # Benchmarks
 │ ├── profiler/ # Time & memory profiling
@@ -95,6 +96,18 @@ for (auto docId : results) {
     std::cout << "Found document: " << docId << std::endl;
 }
 ```
+## 🧵 Phrase Queries (Aho–Corasick)
+
+SwiftSeek integrates the Aho–Corasick automaton to efficiently support:
+      - Phrase queries ("quoted phrases")
+      - Multi-pattern matching in a single pass
+      - Candidate verification after inverted-index filtering
+
+Why Aho–Corasick?
+      - Linear-time matching: O(text length + matches)
+      - Avoids positional index overhead
+      - Ideal for phrase verification and highlighting
+      - Complements (does not replace) the inverted index
 
 ## 📊 Ranking: TF-IDF
 
