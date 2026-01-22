@@ -5,6 +5,7 @@
 #include "query_parser.hpp"
 #include "../inverted_index/inverted_index.hpp"
 #include "../document/document_store.hpp"
+#include "../core/automata/aho_matcher.hpp"
 
 class QueryExecuter{
     public:
