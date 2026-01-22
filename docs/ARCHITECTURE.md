@@ -8,7 +8,7 @@ performance, and extensibility.
 ## 🧠 High-Level Pipeline
 
 
-
+```yaml
 Raw Query
 │
 ▼
@@ -28,7 +28,7 @@ LRU Cache
 │
 ▼
 Results
-
+```
 
 ---
 
